@@ -479,3 +479,82 @@ FROM 	    posts
 GROUP BY  estatus, post_month
 HAVING    numero_posts > 1  --El método HAVING siempre se debe colocar después de GROUP BY.
 ORDER BY  post_month;
+
+
+
+/*QUERYS ANIDADOS: Una Query anidada se da cuando dentro de una consulta se introduce otra, esto es muy utilizado cuando dentro de 
+alguna condición se quiere utilizar algún un valor máximo o mínimo perteneciente a la columna (atributo) de una tabla (entidad), 
+por lo que muchas veces se utiliza en conjunto con los métodos MIN() o MAX(), pero el gran problema que tiene es cuando esta 
+búsqueda se va a realizar varias veces en una base de datos, ya que el tiempo de ejecución se incrementa exponencialmente, por esa 
+razón es que hay que analizar detenidamente sus casos de uso para evitar así que se creen agujeros de conejo interminables. La 
+sintaxis que se puede utilizar para ejecutar es la siguiente:
+        SELECT		Query_Anidado_1.Atributo_Anidado_1, COUNT(Columna)
+        FROM		(
+        --Consulta (Query) anidado.
+        SELECT		MIN(Atributo_1) AS Atributo_Anidado_1, COUNT(Columna_n)
+        FROM		Nombre_Tabla_o_Entidad
+        …
+        ) AS Query_Anidado_1
+        GROUP BY	Query_Anidado_1.Atributo_Anidado_1
+        HAVING	Query_Anidado_1.Columna_n Operación Lógica "Valor_Fila_Para_Filtro”;
+        ORDER BY	Query_Anidado_1.Atributo_Anidado_1 ASC_o_DESC
+          LIMIT 	Número_de_Filas_Ordenadas_a_Mostrar*/
+SELECT  query_anidado.fecha_min_anidada, COUNT(*) AS numero_posts
+FROM(
+  SELECT    DATE(MIN(fecha_publicacion)) AS fecha_min_anidada, YEAR(fecha_publicacion) AS post_nested_year
+  FROM      posts
+  GROUP BY  post_nested_year
+) AS query_anidado
+GROUP BY query_anidado.fecha_min_anidada
+ORDER BY query_anidado.fecha_min_anidada;
+/*Otra aplicación de las consultas aplicadas es la siguiente, donde ahora el query interior fue hecho para obtener la condición 
+que extrae solo cierta fila de la tabla:*/
+SELECT  *
+FROM    posts
+WHERE   fecha_publicacion = (
+  SELECT  MAX(fecha_publicacion)
+  FROM    posts
+);
+
+
+
+
+
+--EJERCICIOS DE CONSULTAS A LA BASE DE DATOS:
+/*A continuación, responderemos algunas preguntas de prueba acerca de la base de datos relacional del blog:
+1.	¿Cuántas etiquetas tiene cada post del blog?
+    a.	Para identificar cada post podemos utilizar su título.
+    b.	La información proviene de 3 tablas distintas: posts, etiquetas y posts_etiquetas (tabla intermedia por la cardinalidad N:N).
+    i.	Debido a esta situación se deberá ejecutar un INNER JOIN doble que considere la intersección de las 3 tablas.
+    c.	La información se agrupa a través del id del post, ya que esa es la relación que hay entre la tabla de posts y la tabla de 
+        etiquetas y la información que quiero saber son las etiquetas contra el título del post.
+    d.	Podría colocar un orden numérico descendente para observar de más a menos el número de etiquetas de cada post.*/
+SELECT    posts.titulo, COUNT(*) AS num_etiquetas
+FROM      posts
+  INNER JOIN posts_etiquetas  ON posts.id = posts_etiquetas.posts_id
+  INNER JOIN etiquetas        ON etiquetas.id = posts_etiquetas.etiquetas_id
+GROUP BY  posts.id
+ORDER BY  num_etiquetas DESC;
+
+
+/*2.	Ahora que ya sé el número de etiquetas, ¿Cuáles etiquetas pertenecen a cada post del blog?*/
+SELECT    posts.titulo, GROUP_CONCAT(nombre_etiqueta) AS nombre_tag
+FROM      posts
+  INNER JOIN posts_etiquetas  ON posts.id = posts_etiquetas.posts_id
+  INNER JOIN etiquetas        ON etiquetas.id = posts_etiquetas.etiquetas_id
+GROUP BY  posts.id
+ORDER BY  nombre_tag ASC;
+
+
+/*3.	¿Existe alguna etiqueta que no corresponda a ningún post?
+      a.	Quiero mostrar todas las etiquetas que no estén ligadas a ningún post.
+      b.	Los datos los voy a tomar de la tabla de las etiquetas, pero como quiero saber su conexión con post, no es necesario que analice post, solo la tabla de etiquetas y su tabla de transición intermedia.
+      i.	Debido a esta situación se deberá ejecutar un LEFT JOIN (de la tabla etiquetas), doble se considere solo las etiquetas que no tengan conexión, osea A – B, siendo A = etiquetas y B = tabla_intermedia_con_conexión_a_posts.
+      c.	No es necesario agrupar la información.*/
+SELECT  *
+FROM    etiquetas
+  LEFT JOIN posts_etiquetas ON etiquetas.id = posts_etiquetas.etiquetas_id
+WHERE   posts_etiquetas.etiquetas_id IS NULL;
+
+
+/*4.*/
