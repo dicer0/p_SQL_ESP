@@ -11,4 +11,4 @@ And this specific repository contains documentation about the SQL language, whic
 <br/>
 &nbsp;
 
-[![SQL](http://dicer0.com/wp-content/uploads/2023/09/p_SQL.png)](https://dicer0.com/#skills)
+[![SQL](http://dicer0.com/wp-content/uploads/2023/11/p_SQL_MarkII.png)](https://dicer0.com/#skills)
