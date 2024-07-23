@@ -1,0 +1,94 @@
+#EL ARCHIVO .gitignore SIRVE PARA INDICAR A GIT CUÁLES SON LOS TIPOS DE DATOS QUE NO QUIERO QUE SE SUBAN, 
+#ASÍ EVITAMOS QUE SE SUBAN DATOS CONFIDENCIALES O SIMPLEMENTE COSAS QUE NO QUEREMOS QUE SE SUBA A CIERTO 
+#REPOSITORIO:
+
+#Ignorar archivos y carpetas generados por el sistema operativo: Tanto los archivos con extensión .DS_Store 
+#para iOS como Thumbs.db para Windows son específicos del sistema operativo, estos contienen metadatos para 
+#mejorar la experiencia del usuario en el Finder de macOS y en el Explorador de archivos de Windows, 
+#respectivamente. Debido a que pueden causar conflictos al compartir repositorios entre sistemas operativos 
+#diferentes, generalmente se ignoran en los repositorios de control de versiones como Git.
+.DS_Store
+Thumbs.db
+
+#Ignorar archivos de registro o de compilación: 
+# - *.log: Los archivos con la extensión .log (de registro) son archivos de texto utilizados para 
+#   registrar información sobre el funcionamiento de un programa, como mensajes de error, advertencias o 
+#   eventos. Puede ser útil excluirlos para evitar la inclusión de grandes cantidades de datos de registro 
+#   en el repositorio y mantenerlo más limpio.
+# - *.pyc: Los archivos .pyc son archivos de código de Python precompilado generados por su intérprete. 
+#   Estos archivos contienen el código fuente compilado en bytecode de Python, pero como no son necesarios 
+#   para compartir el código fuente, su exclusión ayuda a mantener el repositorio más limpio y portátil.
+*.log
+*.pyc
+
+#IGNORAR ARCHIVOS Y/O CARPETAS ESPECÍFICAS: Si en el archivo .gitignore se indica un directorio con o 
+#sin un archivo, ese directorio será excluido al subir el proyecto al repositorio de GitHub:
+#   carpeta_secreta/archivo_secreto.txt
+1.-Data Science/Clases_Personalizadas/POO_23_3_DataBaseExcel/Constants_and_Keys/
+5.-Inteligencia Artificial/API_Keys/
+
+#TOPTAL:
+#Nos podemos apoyar de sitios web que creen archivos .gitignore para ignorar archivos que se crean por 
+#defecto en los sistemas operativos Windows, Linux y Mac:
+#https://www.toptal.com/developers/gitignore
+
+### Linux ###
+#Archivos temporales que pueden crearse si un proceso aún tiene un handle abierto de un archivo eliminado
+*~
+#Archivos ocultos creados por el sistema de archivos FUSE
+.fuse_hidden*
+#Preferencias de directorio de KDE
+.directory
+#Carpeta de papelera de Linux que puede aparecer en cualquier partición o disco
+.Trash-*
+#Archivos .nfs se crean cuando un archivo abierto se elimina pero aún está siendo accedido
+.nfs*
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+#El icono debe terminar con dos \r
+Icon
+#Miniaturas
+._*
+#Archivos que pueden aparecer en la raíz de un volumen
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+#Directorios potencialmente creados en una carpeta compartida AFP
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+### macOS Patch ###
+#Archivos generados por iCloud
+*.icloud
+
+### Windows ###
+#Archivos de caché de miniaturas de Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+#Archivos de volcado
+*.stackdump
+#Archivo de configuración de carpetas
+[Dd]esktop.ini
+#Papelera de reciclaje utilizada en carpetas compartidas
+$RECYCLE.BIN/
+#Archivos del instalador de Windows
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+#Accesos directos de Windows
+*.lnk

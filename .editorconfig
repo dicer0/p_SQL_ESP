@@ -1,0 +1,51 @@
+#EL ARCHIVO .editorconfig SE UTILIZA PARA ASEGURAR QUE TODOS LOS DESARROLLADORES DE
+#UN PROYECTO SIGAN LAS MISMAS REGLAS DE FORMATO EN EL CÓDIGO, SIN IMPORTAR EL EDITOR
+#DE TEXTO (IDE) QUE ESTÉN UTILIZANDO. ESTAS REGLAS INCLUYEN: 
+#root = true: Instrucción que indica que este es el archivo .editorconfig principal o 
+#raíz y que no se deben buscar otros archivos .editorconfig en directorios superiores.
+root = true
+
+[*]
+#Estilo de indentación: Donde se determina si se usan espacios o tabulaciones para 
+#alinear el código. puede ser 'space' (espacios) o 'tab' (tabulaciones).
+indent_style = space
+
+#Tamaño de indentación: El tamaño de indentación indica cuántos espacios o 
+#tabulaciones se usan para estructurar y organizar cada nivel del código de forma 
+#jerárquica.
+indent_size = 2
+
+#Codificación de caracteres: Define cómo se almacenan o interpretan ciertos caracteres 
+#especiales en el archivo. Por ejemplo, con la codificación UTF-8 nos aseguramos de 
+#que el archivo pueda contener caracteres especiales, letras acentuadas y otros 
+#caracteres no ASCII sin problemas.
+charset = utf-8
+
+#Eliminar espacios en blanco al final de las líneas: asegura que no haya espacios 
+#innecesarios al final de cada línea.
+trim_trailing_whitespace = true
+
+#Insertar una nueva línea al final del archivo: asegura que cada archivo termine con 
+#una línea nueva.
+insert_final_newline = true
+
+#Estilo de fin de línea: Define qué carácter se usa para indicar el final de una línea 
+#(por ejemplo, LF para Unix/Linux).
+end_of_line = lf
+
+#Desactivar longitud máxima de línea: evita que se aplique un límite a la longitud de 
+#las líneas, útil cuando se trabaja con cadenas largas o URLs.
+max_line_length = off
+
+#CHANGELOG.md: Es un archivo ligado a cualquier repositorio de Git que proporciona a 
+#todos los miembros del equipo de desarrollo y a los usuarios del proyecto un registro 
+#claro de los cambios y actualizaciones del código, este se actualiza de forma manual 
+#para reflejar los cambios realizados en el proyecto a medida que estos ocurren y no 
+#se modifica de forma automática al realizar commits al repositorio, sino que se 
+#escribe en él de forma manual y luego estos cambios se incluyen en el commit.
+#Los comandos que se indiquen después de esta instrucción solo afectarán al archivo 
+#CHANGELOG.md.
+[CHANGELOG.md]
+#Tamaño de indentación: desactiva la configuración específica del tamaño de indentación 
+#para el archivo CHANGELOG.md.
+indent_size = false
