@@ -5,34 +5,30 @@
 #raíz y que no se deben buscar otros archivos .editorconfig en directorios superiores.
 root = true
 
+#*: Se refiere a que se realizarán los siguientes cambios en todos los archivos 
+#pertenecientes al repositorio. 
 [*]
 #Estilo de indentación: Donde se determina si se usan espacios o tabulaciones para 
 #alinear el código. puede ser 'space' (espacios) o 'tab' (tabulaciones).
 indent_style = space
-
 #Tamaño de indentación: El tamaño de indentación indica cuántos espacios o 
 #tabulaciones se usan para estructurar y organizar cada nivel del código de forma 
 #jerárquica.
 indent_size = 2
-
 #Codificación de caracteres: Define cómo se almacenan o interpretan ciertos caracteres 
 #especiales en el archivo. Por ejemplo, con la codificación UTF-8 nos aseguramos de 
 #que el archivo pueda contener caracteres especiales, letras acentuadas y otros 
 #caracteres no ASCII sin problemas.
 charset = utf-8
-
 #Eliminar espacios en blanco al final de las líneas: asegura que no haya espacios 
 #innecesarios al final de cada línea.
 trim_trailing_whitespace = true
-
 #Insertar una nueva línea al final del archivo: asegura que cada archivo termine con 
 #una línea nueva.
 insert_final_newline = true
-
 #Estilo de fin de línea: Define qué carácter se usa para indicar el final de una línea 
 #(por ejemplo, LF para Unix/Linux).
 end_of_line = lf
-
 #Desactivar longitud máxima de línea: evita que se aplique un límite a la longitud de 
 #las líneas, útil cuando se trabaja con cadenas largas o URLs.
 max_line_length = off
