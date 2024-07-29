@@ -24,6 +24,7 @@ Thumbs.db
 #IGNORAR ARCHIVOS Y/O CARPETAS ESPECÍFICAS: Si en el archivo .gitignore se indica un directorio con o 
 #sin un archivo, ese directorio será excluido al subir el proyecto al repositorio de GitHub:
 #   carpeta_secreta/archivo_secreto.txt
+a8_MongoDB_Data/
 
 #TOPTAL:
 #Nos podemos apoyar de sitios web que creen archivos .gitignore para ignorar archivos que se crean por 

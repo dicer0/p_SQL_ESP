@@ -1,0 +1,44 @@
+#ARCHIVO DE CONFIGURACIÓN .YML:
+#Docker permite que sus aplicaciones se corran en contenedores aislados, lo que facilita su instalación, actualización y 
+#funcionamiento en cualquier entorno sin problemas de compatibilidad, ya que estos son entornos ligeros y portátiles que 
+#incluyen todo lo necesario para ejecutar una aplicación, desde el sistema operativo, las bibliotecas, las dependencias y 
+#el propio código. Algunas de sus características importantes son:
+# - Puerto: El que tiene asignado siempre por defecto es el 27017.
+# - Archivo de configuración: Para configurar las características de un contenedor Docker, se debe crear un archivo 
+#   llamado docker-compose.yml, cuya extensión significa YAML (YAML Ain't Markup Language).
+#     - Imagen: Es un paquete que contiene todo lo necesario para ejecutar una aplicación específica, incluyendo el 
+#       sistema operativo base, código, librerías y configuraciones. Es solo de lectura, lo que significa que no se puede 
+#       modificar una vez creada (inmutable). Las imágenes en Docker se utilizan para crear contenedores, que son 
+#       instancias ejecutables de la imagen.
+#       Cada tipo de imagen para aplicaciones basadas en MongoDB, Node.js, Django, etc. se debe configurar de forma 
+#       diferente, y esto se indica en la documentación de la página Docker Hub: https://hub.docker.com/
+
+#version: Especifica la versión del archivo de configuración de Docker Compose. La versión 3.9 es una de las versiones 
+#más utilizadas que ofrece compatibilidad con características de Docker Compose v2.
+version: '3.9'
+
+#services: Esta sección define la forma en la que se debe correr un contenedor de Docker Compose, el cual es una 
+#instancia ejecutable de una imagen específica, la cual se debe configurar en función del tipo de aplicación en la que 
+#esté basada, ya sea de tipo web, desktop, bases de datos, machine learning, data science, IoT, sistemas embebidos, etc.
+services:
+  #Al servicio se le debe asignar un nombre, el cual indica la forma en la que se ejecuta un contenedor.
+  a1_miBaseDeDatosMongoDB: 
+    #image: Especifica el tipo de imagen Docker que se utilizará para ejecutar este servicio y su versión de forma 
+    #opcional. 
+    image: mongo:5.0
+    #ports: Asigna un puerto de nuestra computadora o servidor a un puerto interno del docker, esto para manejar temas 
+    #de aislamiento y encapsulación: PUERTO_SERVIDOR:PUERTO_CONTENEDOR.
+    #El puerto que siempre se usa por defecto es el 27017.
+    ports:
+      - 27017:27017
+    #La sección environment indica configuraciones específicas de la imagen que se esté utilizando en el proyecto.
+    #environment Mongo: Configura las variables de entorno para el contenedor MongoDB que inicializa la base de datos.
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=Diego1234
+    #volumes: En el caso específico de MongoDB con Docker, se debe crear una carpeta local que se puede llamar como 
+    #nosotros queramos, en ella se guardarán todos los datos de la base de datos no relacional, que dentro del contenedor 
+    #se almacenan en un directorio llamado /data/db (lo cual se menciona en la documentación de Docker Hub).
+    #DIRECTORIO_LOCAL:DIRECTORIO_DE_DATOS_CONTENEDOR.
+    volumes:
+      - ./a8_MongoDB_Data:/data/db

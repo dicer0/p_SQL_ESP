@@ -1,0 +1,24 @@
+/*Mongo Query Language: Son los archivos que tienen extensión .mongodb, su función es ejecutar consultas o queries hacia 
+alguna base de datos con motor MongoDB, para ello previamente ya se debe haber creado un cluster en el servicio cloud 
+Mongo Atlas, instalado la extensión MongoDB for VSCode en Visual Studio Code, creado una conexión entre ambas plataformas 
+y utilizar el siguiente método perteneciente al Mongo Query Language para establecer una conexión entre el código y alguna 
+de las bases de datos incluidas en el cluster, el cual es un grupo de servidores que trabajan juntos para gestionar y 
+distribuir la información de una o varias databases.*/
+
+//CONEXIÓN A UNA BASE DE DATOS DEL CLUSTER:
+/*use(“nombreDataBase_del_Cluster”): Método que selecciona alguna base de datos perteneciente al cluster del servicio 
+cloud Mongo Atlas o alguna base de datos local de MongoDB para realizar operaciones en ella. Si la base de datos no 
+existe, MongoDB la crea automáticamente cuando se le inserten datos.*/
+use("sample_training")
+
+//OBTENCIÓN Y FILTRADO DE DATOS:
+/*db: Es un objeto global que representa la base de datos actual a la que nos hayamos conectado con el método use() y 
+se utiliza para acceder a las colecciones (tablas) dentro de la base de datos. Al usar la nomenclatura del punto después 
+de él, podremos acceder a cada colección de forma individual.*/
+/*coleccionDB.find(): El método find() se aplica a alguna colección obtenida a través del objeto db y se utiliza para 
+buscar documentos dentro de la colección que cumplan con ciertos criterios, filtrando así los datos obtenidos en función 
+de cierta clave:valor, donde cada clave corresponde a las columnas de la tabla y su valor a cada instancia específica.*/
+db.zips.find({state: 'NY'})
+/*coleccionDB.find().count(): El método count aplicado a lo que devuelve un método find() cuenta el número de documentos 
+(filas de datos) obtenidos después de ejecutar una consulta filtrada.*/
+db.zips.find({state: 'NY'}).count()
