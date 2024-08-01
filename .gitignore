@@ -26,6 +26,12 @@ Thumbs.db
 #   carpeta_secreta/archivo_secreto.txt
 a8_MongoDB_Data/
 
+#Ignorar archivos de configuración de Docker:
+# - *.yml: Para configurar las características de un contenedor Docker, se debe crear un archivo llamado 
+#   docker-compose.yml, cuya extensión significa YAML (YAML Ain't Markup Language), pero este no se quiere 
+#   subir a repositorios git porque cuenta con contraseñas para conexión a bases de datos.
+*.yml
+
 #TOPTAL:
 #Nos podemos apoyar de sitios web que creen archivos .gitignore para ignorar archivos que se crean por 
 #defecto en los sistemas operativos Windows, Linux y Mac:

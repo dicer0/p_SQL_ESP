@@ -21,10 +21,10 @@ version: '3.9'
 #instancia ejecutable de una imagen específica, la cual se debe configurar en función del tipo de aplicación en la que 
 #esté basada, ya sea de tipo web, desktop, bases de datos, machine learning, data science, IoT, sistemas embebidos, etc.
 services:
-  #Al servicio se le debe asignar un nombre, el cual indica la forma en la que se ejecuta un contenedor.
-  a1_miBaseDeDatosMongoDB: 
-    #image: Especifica el tipo de imagen Docker que se utilizará para ejecutar este servicio y su versión de forma 
-    #opcional. 
+  #nombreServicio: Al servicio se le debe asignar un nombre, el cual indica la forma en la que se ejecuta un contenedor.
+  a1_miBaseDeDatosMongoDB:
+    #image: Especifica el tipo de imagen Docker que se utilizará para ejecutar este servicio y su versión (de forma 
+    #opcional). 
     image: mongo:5.0
     #ports: Asigna un puerto de nuestra computadora o servidor a un puerto interno del docker, esto para manejar temas 
     #de aislamiento y encapsulación: PUERTO_SERVIDOR:PUERTO_CONTENEDOR.
